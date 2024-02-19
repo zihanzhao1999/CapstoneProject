@@ -4,5 +4,6 @@
 
 ### Performace Analysis
 
-![image](https://github.com/zihanzhao1999/CapstoneProject/assets/111836220/7f5b8f81-0789-4b0e-8ceb-dd739ee7a2db)
+![image](https://github.com/zihanzhao1999/CapstoneProject/assets/111836220/efb13572-0087-4bd2-ada3-bbaea03189e1)
+
 
