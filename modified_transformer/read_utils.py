@@ -14,22 +14,22 @@ def read_evidences():
     file_name = './data/e_list'
     return pickle.load(open(file_name, 'rb'))
 
-    file_name = 'data/release_evidences.json'
-    evidence_list = []
+    # file_name = 'data/release_evidences.json'
+    # evidence_list = []
 
-    with open(file_name, mode='r', encoding='utf-8') as f:
-        data = json.load(f)
+    # with open(file_name, mode='r', encoding='utf-8') as f:
+    #     data = json.load(f)
 
-    for key, value in data.items():
-        if key not in evidence_list:
-            evidence_list.append(key)
+    # for key, value in data.items():
+    #     if key not in evidence_list:
+    #         evidence_list.append(key)
 
-        categories = list(value['value_meaning'].keys())
-        for item in categories:
-            if item not in evidence_list:
-                evidence_list.append(item)
+    #     categories = list(value['value_meaning'].keys())
+    #     for item in categories:
+    #         if item not in evidence_list:
+    #             evidence_list.append(item)
 
-    return evidence_list
+    # return evidence_list
 
 
 def read_conditions():
