@@ -7,6 +7,8 @@ For now, we have implemented different models to be trained on the ground truth 
 [DDXPlus: A New Dataset For Automatic Medical Diagnosis](https://arxiv.org/pdf/2205.09148.pdf) 
 and [its data](https://figshare.com/articles/dataset/DDXPlus_Dataset/20043374)
 
+Please download and place the data in `data` folder
+
 ### Citation:
 ```
 Fansi Tchango, A., Goel, R., Wen, Z., Martel, J., & Ghosn, J. (2022).
