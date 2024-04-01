@@ -3,6 +3,12 @@ We aim to create a model to assist healthcare providers with patients’ diagnos
 
 For now, we have implemented different models to be trained on the ground truth pathology. Please refer to `predict_pathology` folder.
 
+### Requirments:
+```
+pip install -r requirements.txt
+```
+Note: By default, CPU version of Pytorch is installed. If you like to use GPU version, please refer to https://pytorch.org/
+
 ### Data source: 
 [DDXPlus: A New Dataset For Automatic Medical Diagnosis](https://arxiv.org/pdf/2205.09148.pdf) 
 and [its data](https://figshare.com/articles/dataset/DDXPlus_Dataset/20043374)
