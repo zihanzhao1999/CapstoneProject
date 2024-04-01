@@ -4,6 +4,7 @@ We aim to create a model to assist healthcare providers with patients’ diagnos
 For now, we have implemented different models to be trained on the ground truth pathology. Please refer to `predict_pathology` folder.
 
 ### Requirments:
+![requirements](https://img.shields.io/badge/Python->3.8.0-3480eb.svg?longCache=true&style=flat&logo=python)
 ```
 pip install -r requirements.txt
 ```
