@@ -32,8 +32,8 @@ class DDxDataset(Dataset):
 
 
 def load_dataset(batch_size, num_workers):
-    train_data = DDxDataset(filename='data/release_train_patients.csv')
-    test_data = DDxDataset(filename='data/release_test_patients.csv')
+    train_data = DDxDataset(filename='../../data/release_train_patients.csv')
+    test_data = DDxDataset(filename='../../data/release_test_patients.csv')
 
     train_loader = DataLoader(train_data,
                               batch_size=batch_size,

@@ -49,7 +49,7 @@ The working directory should have the following structure:
 
 ```train.py```: train the network 
 
-```test.py```: runs the network over the test dataset 
+```metric.ipynb```: evaluate the test data
 
 ```inference.py```: runs the inference over a single sample of the dataset
 
