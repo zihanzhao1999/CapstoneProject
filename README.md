@@ -7,7 +7,12 @@ For now, we have implemented different models to be trained on the ground truth 
 ```
 pip install -r requirements.txt
 ```
-Note: By default, CPU version of Pytorch is installed. If you like to use GPU version, please refer to https://pytorch.org/
+Note: By default, CPU version of Pytorch is installed. If you like to use GPU version, please refer to https://pytorch.org/.
+
+Or try following command after installing requirements.txt:
+```
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+```
 
 ### Data source: 
 [DDXPlus: A New Dataset For Automatic Medical Diagnosis](https://arxiv.org/pdf/2205.09148.pdf) 
