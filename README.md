@@ -38,8 +38,10 @@ Please download and place the data in `data` folder
 
 ## Authors
 
-Ting Husan Chung //
-Jiaying Zheng //
+Ting Husan Chung 
+
+Jiaying Zheng 
+
 Zihan Zhao
 
 ## Citation:
