@@ -38,9 +38,8 @@ Please download and place the data in `data` folder
 
 ## Authors
 
-Ting Husan Chung
-<a href="https://github.com/Agzjy">
-</a>
+Ting Husan Chung //
+Jiaying Zheng //
 Zihan Zhao
 
 ## Citation:
