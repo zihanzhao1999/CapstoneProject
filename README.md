@@ -11,6 +11,9 @@ For now, we have implemented different models to be trained on the ground truth 
 ### Dependencies
 
 * Python >= 3.8
+* tqdm == 4.65.0
+* torchinfo == 1.8.0
+* autogluon == 1.0.0
 * Pandas; Numpy; Matplotlib; Scipy; Sklearn; Pytorch; Tensorflow; AutoGluon
 
 
