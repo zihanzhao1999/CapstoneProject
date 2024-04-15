@@ -1,4 +1,6 @@
 # CapstoneProject - Diseases Prediction
+
+### Introduction:
 We aim to create a model to assist healthcare providers with patients’ diagnoses.
 
 For now, we have implemented different models to be trained on the ground truth pathology. Please refer to `predict_pathology` folder.
