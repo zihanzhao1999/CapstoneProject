@@ -1,9 +1,9 @@
 # CapstoneProject - Diseases Prediction
 
 ### Introduction:
-We aim to create a model to assist healthcare providers with patients’ diagnoses.
-
-For now, we have implemented different models to be trained on the ground truth pathology. Please refer to `predict_pathology` folder.
+In the field of healthcare, the integration of machine learning technologies has played an important role, particularly in the realm of disease diagnosis and management. A good machine learniong model can shorten the time spent on diagnosis thus better support the treatment.
+Our group aim to find better models with higher prediction accuracy to assist healthcare providers with patients’ diagnoses.
+For now, we have implemented different models to be trained on the ground truth pathology and differential diagnosis. Please refer to `predict_pathology` and `predict_differential_diagnosis` folder.
 
 ### Requirments:
 ![requirements](https://img.shields.io/badge/Python->3.8.0-3480eb.svg?longCache=true&style=flat&logo=python)
