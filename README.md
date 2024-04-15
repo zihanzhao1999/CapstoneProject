@@ -39,7 +39,7 @@ Please download and place the data in `data` folder
 ## Authors
 
 Ting Husan Chung
-<a href="https://github.com/OWNER/REPO/graphs/contributors">
+<a href="https://github.com/Agzjy">
 </a>
 Zihan Zhao
 
