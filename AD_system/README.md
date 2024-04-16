@@ -1,7 +1,7 @@
 # Auto Diagnosis System
 
 ## Usage
-All the neceessary files are ready in the `stored_files` folder. One thing left to do is to unzip `inquiry_system.zip` to the same folder. 
+All the necessary files are ready in the `stored_files` folder. One thing left to do is to unzip `inquiry_system.zip` to the same folder. 
 Therefore, you can skip the following steps to the inference using `AD_system.ipynb`.
 
 #### For data preprocessing,
