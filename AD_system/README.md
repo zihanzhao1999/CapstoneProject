@@ -1,6 +1,6 @@
 # Auto Diagnosis System
 
-## Run AD System as streamlit app
+## Run AD System as Streamlit app
 ```
 streamlit run streamlit_app.py
 ```
