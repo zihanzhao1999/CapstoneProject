@@ -1,6 +1,9 @@
 import pickle
 import zstandard as zstd
 import torch
+import pandas as pd
+import numpy as np
+import json
 
 def read_zst(path):
     '''
@@ -91,3 +94,47 @@ def calculate_top_entropy_columns(df, columns, prefix_to_columns, column_to_pref
     maximun = entropy_values_group[max_entropy_group_id].item()
     
     return (max_col, maximun)
+
+
+def column_translate(path='../data/release_evidences.json'):
+    '''
+    Translate evidences from French to English.
+    '''
+    with open(path, 'r') as file:
+        data = json.load(file)
+    
+    column_translations = {}
+    # loop through every entry
+    for key, value in data.items():
+        question_en = value['question_en']
+        possible_values = value['possible-values']
+
+        # if possible value is an empty list
+        if not possible_values:
+            column_translations[key] = f"{question_en}_@_yes"
+        else:
+            # if possible value is not an empty list, append each possible value after the key
+            for val in possible_values:
+                if val in value['value_meaning'] and 'en' in value['value_meaning'][val]:
+                    translation_suffix = value['value_meaning'][val]['en']
+                    column_translations[f"{key}_@_{val}"] = f"{question_en}_@_{translation_suffix}"
+                else:
+                    # if there is no translation, just append the original word
+                    translation_suffix = val
+                    column_translations[f"{key}_@_{val}"] = f"{question_en}_@_{translation_suffix}"
+                    
+    return column_translations
+
+def pathology_translate(path='../data/release_conditions.json'):
+    '''
+    Translate pathology from French to English.
+    '''
+    with open(path, 'r') as file:
+        data_pathology = json.load(file)
+
+    pathology_dict = {}
+    for condition_key, condition_value in data_pathology.items():
+        english_name = condition_value.get('cond-name-eng', '')
+        pathology_dict[condition_key] = english_name
+
+    return pathology_dict
