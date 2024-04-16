@@ -6,7 +6,10 @@ In the field of healthcare, the integration of machine learning technologies has
 Our group aim to find better models with higher prediction accuracy to assist healthcare providers with patients’ diagnoses.
 
 For now, we have implemented different models to be trained on the ground truth pathology and differential diagnosis. Please refer to `predict_pathology` and `predict_differential_diagnosis` folder.
-Based on the best model(LSTM) and a simple inquiry system we invented, we implemented the Auto Diagnosis System. Please refer to `AD_system`.
+
+Also, based on the best model(LSTM) and a simple inquiry system we invented, we implemented the Auto Diagnosis System.
+Moreover, we have implemented a Streamlit app for the AD System. Please refer to `AD_system`. 
+
 
 ## Requirments:
 
@@ -28,6 +31,11 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 * autogluon == 1.0.0
 * zstandard == 0.22.0
 * Pandas; Numpy; Matplotlib; Scipy; Sklearn; Pytorch; Tensorflow; AutoGluon
+
+## Run AD System as Streamlit app
+```
+streamlit run AD_system/streamlit_app.py
+```
 
 ## Data source: 
 [DDXPlus: A New Dataset For Automatic Medical Diagnosis](https://arxiv.org/pdf/2205.09148.pdf) 
