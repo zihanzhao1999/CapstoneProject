@@ -31,6 +31,7 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 * torchinfo == 1.8.0
 * autogluon == 1.0.0
 * zstandard == 0.22.0
+* streamlit == 1.33.0
 * Pandas; Numpy; Matplotlib; Scipy; Sklearn; Pytorch; Tensorflow; AutoGluon
 
 ## Run AD System as Streamlit app
