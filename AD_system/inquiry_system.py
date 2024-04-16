@@ -15,7 +15,7 @@ if __name__ == '__main__':
     parser.add_argument(
         "input_path", help="intput path to the patient data file (zst file)", type=str)
     parser.add_argument(
-        "--output_dir", help="output folder", type=str, default="data")
+        "--output_dir", help="output folder", type=str, default=".")
     args = parser.parse_args()
     
     # Load and process train data
@@ -41,7 +41,7 @@ if __name__ == '__main__':
 
     input_wo_sex = input_wo_sex.replace(0, -1) # change -1 to represent negative
 
-    column_to_prefix, prefix_to_columns = parse_cols(input_wo_sex.columns)
+    prefix_to_columns, column_to_prefix = parse_cols(original_column_names)
     
     # Use a decision tree structure for dynamic programming
     # If there is already a inquiry system decision tree, then load it
@@ -71,7 +71,6 @@ if __name__ == '__main__':
         root = tree_root
         reveal = []
         similarity = None
-        
         
         if idx == stored_tree_param:
             # Store the tree
