@@ -1,7 +1,12 @@
 # Auto Diagnosis System
 
-## Usage
-All the necessary files are ready in the `stored_files` folder. One thing left to do is to unzip `inquiry_system.zip` to the same folder. 
+## Run AD System as streamlit app
+```
+streamlit run streamlit_app.py
+```
+
+## Development Usage
+All the necessary files are ready in the `stored_files` folder. One thing left to do is to unzip `inquiry_system.zip` to the same folder, or you can directly use `simple_tree.pkl` as the decision tree. 
 Therefore, you can skip the following steps to the inference using `AD_system.ipynb`.
 
 #### For data preprocessing,
