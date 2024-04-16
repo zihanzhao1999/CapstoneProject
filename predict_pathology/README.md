@@ -4,6 +4,4 @@
 
 ### Performace Analysis
 
-![image](https://github.com/zihanzhao1999/CapstoneProject/assets/111836220/efb13572-0087-4bd2-ada3-bbaea03189e1)
-
-
+<img width="1076" alt="Screenshot 2024-04-16 at 5 15 46 PM" src="https://github.com/zihanzhao1999/CapstoneProject/assets/60196990/f8356867-1920-4204-807e-ed1c56532930">
