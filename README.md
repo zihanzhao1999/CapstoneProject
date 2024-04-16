@@ -4,18 +4,9 @@
 
 In the field of healthcare, the integration of machine learning technologies has played an important role, particularly in the realm of disease diagnosis and management. A good machine learniong model can shorten the time spent on diagnosis thus better support the treatment.
 Our group aim to find better models with higher prediction accuracy to assist healthcare providers with patients’ diagnoses.
+
 For now, we have implemented different models to be trained on the ground truth pathology and differential diagnosis. Please refer to `predict_pathology` and `predict_differential_diagnosis` folder.
-
-## Getting Started
-
-### Dependencies
-
-* Python >= 3.8
-* tqdm == 4.65.0
-* torchinfo == 1.8.0
-* autogluon == 1.0.0
-* Pandas; Numpy; Matplotlib; Scipy; Sklearn; Pytorch; Tensorflow; AutoGluon
-
+Based on the best model(LSTM) and a simple inquiry system we invented, we implemented the Auto Diagnosis System. Please refer to `AD_system`.
 
 ## Requirments:
 
@@ -30,6 +21,13 @@ Or try following command after installing requirements.txt:
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 ```
 
+### Dependencies
+* Python >= 3.8
+* tqdm == 4.65.0
+* torchinfo == 1.8.0
+* autogluon == 1.0.0
+* Pandas; Numpy; Matplotlib; Scipy; Sklearn; Pytorch; Tensorflow; AutoGluon
+
 ## Data source: 
 [DDXPlus: A New Dataset For Automatic Medical Diagnosis](https://arxiv.org/pdf/2205.09148.pdf) 
 and [its data](https://figshare.com/articles/dataset/DDXPlus_Dataset/20043374)
@@ -38,7 +36,7 @@ Please download and place the data in `data` folder
 
 ## Authors
 
-Ting Husan Chung 
+Ting Husan Chung
 
 Jiaying Zheng 
 
