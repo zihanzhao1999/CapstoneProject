@@ -54,7 +54,8 @@ if __name__ == '__main__':
         st.session_state.train_wo_age_tensor = st.session_state.train_wo_sex_tensor.clone()
         st.session_state.train_wo_age_tensor[:, st.session_state.age_idx] = 0
 
-        st.session_state.train_wo_sex = st.session_state.train_wo_sex.replace(0, -1)
+        st.session_state.train_wo_sex = [] # clean up space
+        st.session_state.train_wo_age = [] # clean up space
     
         # Parse column names
         st.session_state.prefix_to_columns, st.session_state.column_to_prefix = parse_cols(st.session_state.original_column_names)
@@ -72,13 +73,12 @@ if __name__ == '__main__':
     
     if st.session_state.question_num == 0:
         # User inputs for age and sex
-        st.session_state.instance_tensor = torch.zeros(517).to(st.session_state.device)
+        st.session_state.instance_tensor = torch.zeros(517, dtype=torch.int8).to(st.session_state.device)
         st.session_state.age = st.number_input('Enter your age', min_value=0, max_value=130, step=1)
         st.session_state.sex = st.selectbox('Select your sex', [''] + ['Male', 'Female', 'Other'])
         st.session_state.questions = []
         st.session_state.answers = []
         
-    
         # Agent inquiries
         st.session_state.num_question = 20
         st.session_state.percent = 500
@@ -86,13 +86,16 @@ if __name__ == '__main__':
         st.session_state.root = st.session_state.tree_root
         st.session_state.reveal = []
         st.session_state.similarity = None
-
+        
+    # When question number < number of questions in setting, keep asking
     if st.session_state.question_num < st.session_state.num_question:
         st.write(f'Question #{st.session_state.question_num +1}')
         new_inquiry = st.session_state.root.next_question
         col_english = st.session_state.column_translations[st.session_state.original_column_names[new_inquiry]]
+        # Show the question
         st.write(col_english.split('_@_')[0])
-        if st.session_state.column_to_prefix[new_inquiry]:
+        # Show the options
+        if st.session_state.column_to_prefix[new_inquiry]: 
             list_of_indexes = st.session_state.prefix_to_columns[st.session_state.column_to_prefix[new_inquiry]]
             q_columns = st.session_state.original_column_names[list_of_indexes]
             mapping = {}
@@ -103,7 +106,8 @@ if __name__ == '__main__':
                 options.append(option)
             try:
                 int(options[0])
-                answer = st.selectbox('Select your anwser(s)', [''] + options)
+                answer = st.selectbox('Select your anwser', [''] + options)
+                answer = [answer]
             except:
                 answer = st.multiselect('Select your anwser(s)', [''] + options)
             for option in options:
@@ -115,31 +119,36 @@ if __name__ == '__main__':
             st.session_state.instance_tensor[new_inquiry] = 1 if answer == 'Yes' else -1
             new_inquiry = [new_inquiry]
         
-        if st.button('Submit'):
+        if st.button('Submit'): # User confirms the answer
             st.session_state.questions.append(col_english.split('_@_')[0])
             st.session_state.answers.append(answer)
             st.session_state.reveal += new_inquiry
+            
+            # When it needs to consider the age
             if st.session_state.question_num == st.session_state.when_to_consider_age:
                 st.session_state.instance_tensor[st.session_state.age_idx] = parse_age(st.session_state.age)
                 st.session_state.reveal += [st.session_state.age_idx]
-                
+
+            # Calculate similarity
             if st.session_state.similarity is None:
-                similarity = torch.zeros(st.session_state.train_wo_sex_tensor.size(0), device=st.session_state.device)
+                st.session_state.similarity = torch.zeros(st.session_state.train_wo_sex_tensor.size(0), device=st.session_state.device)
             if st.session_state.question_num == st.session_state.when_to_consider_age:
                 for question_idx in new_inquiry:
-                    similarity += 2 * (st.session_state.train_wo_age_tensor[:, question_idx] != st.session_state.instance_tensor[question_idx])
-                similarity += (st.session_state.train_wo_sex_tensor[:, st.session_state.age_idx] - st.session_state.instance_tensor[st.session_state.age_idx]).abs()
+                    st.session_state.similarity += 2 * (st.session_state.train_wo_age_tensor[:, question_idx] != st.session_state.instance_tensor[question_idx])
+                st.session_state.similarity += (st.session_state.train_wo_sex_tensor[:, st.session_state.age_idx] - st.session_state.instance_tensor[st.session_state.age_idx]).abs()
             else:
                 for question_idx in new_inquiry:
-                    similarity += 2 * (st.session_state.train_wo_age_tensor[:, question_idx] != st.session_state.instance_tensor[question_idx])
+                    st.session_state.similarity += 2 * (st.session_state.train_wo_age_tensor[:, question_idx] != st.session_state.instance_tensor[question_idx])
             
             st.session_state.cur_node = DPTreeNode(None, None)
             st.session_state.root.add_child(st.session_state.cur_node)
             k = st.session_state.n//10000*st.session_state.percent
-            values, top_indices = torch.topk(similarity, k, largest=False)
+            values, top_indices = torch.topk(st.session_state.similarity, k, largest=False)
             top_actual_indices = top_indices
             similar_cases = st.session_state.train_wo_age_tensor[top_actual_indices]
-            selected_col = [col for col in st.session_state.train_wo_sex.columns if col not in st.session_state.reveal]
+            selected_col = [col for col in range(st.session_state.train_wo_sex_tensor.size(1)) if col not in st.session_state.reveal]
+            
+            # Calculate entropy to decide the next question
             new_inquiry, en = calculate_top_entropy_columns(
                 similar_cases[:, selected_col], selected_col, st.session_state.prefix_to_columns, st.session_state.column_to_prefix)
             st.session_state.cur_node.next_question = new_inquiry
@@ -148,14 +157,12 @@ if __name__ == '__main__':
             st.session_state.percent = st.session_state.percent//(1.4**(st.session_state.root.entropy + 1))
             st.session_state.percent = int(st.session_state.percent) if st.session_state.percent > 1 else 1
             
-            st.session_state.question_num += 1
-            
             if st.session_state.device == 'cuda':
                 torch.cuda.synchronize()
-                
-            st.experimental_rerun()
-        
-    else:
+            st.session_state.question_num += 1
+            st.rerun()
+            
+    else: # Send user data into the predictive model
         mask_instance = pd.Series(st.session_state.instance_tensor.cpu().numpy(), index=st.session_state.original_column_names)
         mask_instance = mask_instance.astype(np.float64)
         mask_instance['AGE'] = st.session_state.age_scaler.transform(np.array(st.session_state.age).reshape(1, -1))[0][0]
@@ -167,7 +174,8 @@ if __name__ == '__main__':
                 features = features.unsqueeze(1) 
                 outputs = st.session_state.model.forward(features)
                 predictions = torch.sigmoid(outputs).round()
-                
+        
+        # Print out the result
         st.markdown(f'Sex: {st.session_state.sex},{"&#160;"*10} Age: {st.session_state.age}')
         st.write('----------------')
         st.write('Agent inquiries:')
