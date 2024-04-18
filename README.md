@@ -36,8 +36,10 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 
 ## Run AD System as Streamlit app
 ```
-streamlit run AD_system/streamlit_app.py
+cd AD_system
+streamlit run streamlit_app.py
 ```
+![image](https://github.com/zihanzhao1999/CapstoneProject/assets/111836220/a3844094-c03f-4edf-82fa-c428457a4b22)
 
 ## Data source: 
 [DDXPlus: A New Dataset For Automatic Medical Diagnosis](https://arxiv.org/pdf/2205.09148.pdf) 
