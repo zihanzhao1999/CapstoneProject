@@ -61,3 +61,8 @@ Fansi Tchango, A., Goel, R., Wen, Z., Martel, J., & Ghosn, J. (2022).
 Ddxplus: A new dataset for automatic medical diagnosis.
 Advances in Neural Information Processing Systems, 35, 31306-31318.
 ```
+```
+Alam, M. M., Raff, E., Oates, T., & Matuszek, C. (2023). Ddxt: Deep generative
+transformer models for differential diagnosis. Deep Generative Models
+for Health Workshop NeurIPS 2023
+```
