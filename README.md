@@ -45,8 +45,6 @@ streamlit run streamlit_app.py
 [DDXPlus: A New Dataset For Automatic Medical Diagnosis](https://arxiv.org/pdf/2205.09148.pdf) 
 and [its data](https://figshare.com/ndownloader/articles/20043374/versions/14)
 
-[its data](https://figshare.com/articles/dataset/DDXPlus_Dataset/20043374)
-
 Please download and place the data in `data` folder
 
 ## Authors
